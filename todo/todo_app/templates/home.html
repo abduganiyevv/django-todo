@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Bosh sahifa | Todo App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        .box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px 60px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: #fff;
+            color: #2575fc;
+            font-weight: bold;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        a:hover {
+            background: #f0f0f0;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Todo App ga Xush Kelibsiz</h1>
+        <a href="{% url 'tasks_list' %}">Vazifalar ro‘yxati</a>
+    </div>
+</body>
+</html>

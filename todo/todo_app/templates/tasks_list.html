@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Vazifalar | Todo App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: #fff;
+            width: 500px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #FF5722;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f4f4f9;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        li:hover { background: #e0e0e0; }
+        li.completed { text-decoration: line-through; color: gray; background: #d3f9d8; }
+
+        a {
+            text-decoration: none;
+            margin-left: 5px;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        a.edit { background: #FFC107; color: white; }
+        a.complete { background: #4CAF50; color: white; }
+        a.delete { background: #F44336; color: white; }
+        a:hover { opacity: 0.8; }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .top a {
+            background: #2575fc;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top">
+            <a href="{% url 'add_task' %}">Yangi vazifa qo‘shish</a>
+            <a href="{% url 'home' %}">Bosh sahifa</a>
+        </div>
+        <h1>Vazifalar ro‘yxati</h1>
+        <ul>
+            {% for task in tasks %}
+                <li class="{% if task.completed %}completed{% endif %}">
+                    {{ task.title }}
+                    <span>
+                        {% if not task.completed %}
+                            <a class="complete" href="{% url 'complete_task' task.id %}">Bajarildi</a>
+                        {% endif %}
+                        <a class="edit" href="{% url 'edit_task' task.id %}">Tahrirlash</a>
+                        <a class="delete" href="{% url 'delete_task' task.id %}">O‘chirish</a>
+                    </span>
+                </li>
+            {% empty %}
+                <li>Hali vazifa yo‘q.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

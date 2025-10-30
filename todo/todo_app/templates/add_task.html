@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if task %}Vazifani tahrirlash{% else %}Vazifa qo‘shish{% endif %} | Todo App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            text-align: center;
+            width: 400px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
+        button {
+            padding: 12px 30px;
+            border-radius: 10px;
+            border: none;
+            background: #fff;
+            color: #2575fc;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover { transform: scale(1.05); }
+        a {
+            display: block;
+            margin-top: 15px;
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{% if task %}Vazifani tahrirlash{% else %}Vazifa qo‘shish{% endif %}</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="Vazifa nomi" value="{% if task %}{{ task.title }}{% endif %}">
+            <button type="submit">{% if task %}Saqlash{% else %}Qo‘shish{% endif %}</button>
+        </form>
+        <a href="{% url 'tasks_list' %}">Vazifalar ro‘yxatiga qaytish</a>
+    </div>
+</body>
+</html>
